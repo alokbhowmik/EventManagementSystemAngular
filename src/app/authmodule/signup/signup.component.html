@@ -1,0 +1,36 @@
+<div class="container">
+  <form [formGroup]="signupFromGroup" (ngSubmit)="onSignup(signupFromGroup)">
+    
+    <div class="form-group">
+      <label for="firstname">First Name</label>
+      <input formControlName="firstname"
+       name="firstname" type="text" class="form-control" id="firstname" aria-describedby="emailHelp" />
+    </div>
+
+    <div class="form-group">
+      <label for="lastname">Last Name</label>
+      <input formControlName="lastname" name="lastname" type="text" class="form-control" id="lastname" aria-describedby="emailHelp" />
+    </div>
+
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input formControlName="email" name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+    </div>
+    <div class="form-group">
+      <label for="mob">Mobile No</label>
+      <input formControlName="mob" name="mob" type="number" class="form-control" id="mob" aria-describedby="mobHelp" />
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input formControlName="pwd" name="pwd" type="password" class="form-control" id="exampleInputPassword1" />
+    </div>
+    <!-- routerLink = "/user/login/signup/compleate" -->
+    <div class="d-flex justify-content-around">
+      <button type="submit" class="btn btn-primary" 
+     
+      
+      >Signup</button>
+    </div>
+  </form>
+</div>
