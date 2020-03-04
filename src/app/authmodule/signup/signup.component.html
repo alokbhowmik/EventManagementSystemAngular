@@ -6,28 +6,88 @@
       <input formControlName="firstname"
        name="firstname" type="text" class="form-control" id="firstname" aria-describedby="emailHelp" />
     </div>
-
+    <div *ngIf = "!signupFromGroup.get('firstname').valid && (signupFromGroup.get('firstname').dirty || signupFromGroup.get('firstname').touched)" class="text-danger">
+      <div *ngIf="signupFromGroup.get('firstname').errors.required">
+        Name is required.
+      </div>
+      <div *ngIf="signupFromGroup.get('firstname').errors.fnameValidation">
+        <span>
+          first name should be graterthan {{ signupFromGroup.get('firstname').errors.requiredValue }}
+        </span>
+      </div>
+      <div *ngIf="signupFromGroup.get('firstname').errors.fnameValidation1">
+        <span>
+          {{ signupFromGroup.get('firstname').errors.requiredValue }}
+        </span>
+      </div>
+    </div>
     <div class="form-group">
       <label for="lastname">Last Name</label>
       <input formControlName="lastname" name="lastname" type="text" class="form-control" id="lastname" aria-describedby="emailHelp" />
     </div>
-
+    <div *ngIf = "!signupFromGroup.get('lastname').valid && (signupFromGroup.get('lastname').dirty || signupFromGroup.get('lastname').touched)" class="text-danger">
+      <div *ngIf="signupFromGroup.get('lastname').errors.required">
+        Last Name is required.
+      </div>
+      <div *ngIf="signupFromGroup.get('lastname').errors.fnameValidation">
+        <span>
+          last name should be graterthan {{ signupFromGroup.get('lastname').errors.requiredValue }}
+        </span>
+      </div>
+      <div *ngIf="signupFromGroup.get('lastname').errors.fnameValidation1">
+        <span>
+          {{ signupFromGroup.get('lastname').errors.requiredValue }}
+        </span>
+      </div>
+    </div>
 
     <div class="form-group">
       <label for="exampleInputEmail1">Email address</label>
       <input formControlName="email" name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
     </div>
+
+    <div class="text-danger" *ngIf="signupFromGroup.get('email').invalid && signupFromGroup.get('email').touched">
+      <div *ngIf = "signupFromGroup.get('email').errors.required">
+        <span>
+           invalid Email 
+        </span>
+      </div> 
+      <div *ngIf = "signupFromGroup.get('email').errors.email">
+        <span>
+          It is not an email  
+        </span>
+      </div>
+    </div>
     <div class="form-group">
       <label for="mob">Mobile No</label>
       <input formControlName="mob" name="mob" type="number" class="form-control" id="mob" aria-describedby="mobHelp" />
     </div>
+    <div class="text-danger" *ngIf = "!signupFromGroup.get('mob').valid && (signupFromGroup.get('mob').dirty || signupFromGroup.get('mob').touched)">
+    
+      <div *ngIf = "signupFromGroup.get('mob').required">
+        Mobile no required
+      </div>
+      <div *ngIf = "signupFromGroup.get('mob').errors.mobValidation">
+        {{ signupFromGroup.get('mob').errors.errorMessage }}
+      </div>
+    </div>
+    
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
       <input formControlName="pwd" name="pwd" type="password" class="form-control" id="exampleInputPassword1" />
     </div>
+    <div class="text-danger" *ngIf = "!signupFromGroup.get('pwd').valid && (signupFromGroup.get('pwd').dirty || signupFromGroup.get('pwd').touched)">
+    <div *ngIf = "signupFromGroup.get('pwd').required">
+      password is required
+    </div>
+    <div *ngIf = "signupFromGroup.get('pwd').errors.passwordValidation">
+      {{ signupFromGroup.get('pwd').errors.errorMessage }}
+    </div>
+    
+    </div>  
     <!-- routerLink = "/user/login/signup/compleate" -->
     <div class="d-flex justify-content-around">
-      <button type="submit" class="btn btn-primary" 
+      <button type="submit" class="btn btn-primary" [disabled] = "!signupFromGroup.valid"
      
       
       >Signup</button>

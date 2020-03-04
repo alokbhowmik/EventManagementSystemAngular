@@ -1,20 +1,16 @@
-import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, NgForm, Validators } from "@angular/forms";
-import { DataService } from "src/app/services/data.service";
-import { SingupModel } from "./singup-model.model";
-import {
-  nameValidation,
-  mobValidation,
-  passwordValidation
-} from "src/app/gte.validator";
+import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { nameValidation, mobValidation, passwordValidation } from 'src/app/gte.validator';
+import { SingupModel } from 'src/app/authmodule/signup/singup-model.model';
 
 @Component({
-  selector: "app-signup",
-  templateUrl: "./signup.component.html",
-  styleUrls: ["./signup.component.css"]
+  selector: 'app-create-employee',
+  templateUrl: './create-employee.component.html',
+  styleUrls: ['./create-employee.component.css']
 })
-export class SignupComponent implements OnInit {
-  data: any;
+export class CreateEmployeeComponent implements OnInit {
+
   signup = new SingupModel();
 
   constructor(private dataService: DataService) {}
@@ -48,4 +44,5 @@ export class SignupComponent implements OnInit {
       console.log(res);
     });
   }
+
 }

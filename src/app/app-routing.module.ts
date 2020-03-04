@@ -5,6 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {path:'', loadChildren: ()=>import('./authmodule/authmodule.module').then(
     m => m.AuthmoduleModule
+  )},
+  {path:"createEmployeeComponent",loadChildren:()=>import('./employeemodule/employeemodule.module').then(
+    m => m.EmployeemoduleModule
   )}
 ];
 
