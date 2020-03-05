@@ -3,15 +3,18 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 export function nameValidation(control: AbstractControl): ValidationErrors | null {
 	var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
 	const val = control.value;
+	if(!val.trim().length){
+		return { fnameValidation1: true, requiredValue: 'Null value not allowed' };
 
-	if (val.length < 3) {
+	}
+	if (val.trim().length < 3) {
 		return { fnameValidation: true, requiredValue: 3 };
 	}
 	if (val.match(/(\d+)/)) {
 		return { fnameValidation1: true, requiredValue: 'Number not allowed' };
 	}
 	if (format.test(val)) {
-		console.log('format match ...');
+		// console.log('format match ...');
 		return { fnameValidation1: true, requiredValue: 'Special Character not allowed' };
 	}
 	return null;

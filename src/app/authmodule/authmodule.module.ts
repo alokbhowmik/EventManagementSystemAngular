@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 // import { Http2ServerResponse } from 'http2';
 
@@ -16,6 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     AuthmoduleRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    
     // Http2ServerResponse
   ]
 })

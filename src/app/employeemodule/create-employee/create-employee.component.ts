@@ -3,6 +3,7 @@ import { DataService } from 'src/app/services/data.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { nameValidation, mobValidation, passwordValidation } from 'src/app/gte.validator';
 import { SingupModel } from 'src/app/authmodule/signup/singup-model.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-employee',
@@ -13,7 +14,7 @@ export class CreateEmployeeComponent implements OnInit {
 
   signup = new SingupModel();
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService,private router: Router) {}
 
   ngOnInit(): void {
     // this.data = this.dataService.getData().subscribe(res=>{
@@ -28,10 +29,11 @@ export class CreateEmployeeComponent implements OnInit {
     pwd: new FormControl("", [
       Validators.required,
       passwordValidation
-    ])
+    ]),
+    roleid: new FormControl("2")
   });
 
-  onSignup(signupFromGroup) {
+  onCreateEmployee(signupFromGroup) {
     console.log("singup function call ...");
     // console.log(signupFromGroup.value)
     this.signup.firstname = signupFromGroup.value["firstname"];
@@ -39,9 +41,10 @@ export class CreateEmployeeComponent implements OnInit {
     this.signup.email = signupFromGroup.value["email"];
     this.signup.mob = signupFromGroup.value["mob"];
     this.signup.password = signupFromGroup.value["pwd"];
-
+    this.signup.roleid = signupFromGroup.value["roleid"]
     this.dataService.insertUserData(this.signup).subscribe(res => {
       console.log(res);
+      this.router.navigate(['/createEmployeeComponent'])
     });
   }
 

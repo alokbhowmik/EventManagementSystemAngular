@@ -8,6 +8,9 @@ const routes: Routes = [
   )},
   {path:"createEmployeeComponent",loadChildren:()=>import('./employeemodule/employeemodule.module').then(
     m => m.EmployeemoduleModule
+  )},
+  {path:"userProfile",loadChildren:()=>import('./user-module/user-module.module').then(
+    m => m.UserModuleModule
   )}
 ];
 

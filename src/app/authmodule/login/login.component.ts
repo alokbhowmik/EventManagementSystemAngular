@@ -1,80 +1,98 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DataService } from 'src/app/services/data.service';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { DataService } from "src/app/services/data.service";
+import { Router } from "@angular/router";
 import { CreateEmployeeComponent } from "../../employeemodule/create-employee/create-employee.component";
+import { HttpClient } from '@angular/common/http';
 @Component({
-	selector: 'app-login',
-	templateUrl: './login.component.html',
-	styleUrls: [ './login.component.css' ]
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-	constructor(private dataService: DataService,private router : Router) {}
+  constructor(
+	  private dataService: DataService, 
+	private router: Router,
+	private httpClient:HttpClient
+	) {}
 
-	isAdmin: boolean = false;
-	isEmployee: boolean = false;
-	isUser: boolean = false;
-	isWrongUser = false;
-	message:string = ""
+  isAdmin: boolean = false;
+  isEmployee: boolean = false;
+  isUser: boolean = false;
+  isWrongUser = false;
+  message: string = "";
+  loginFromGroup:FormGroup
+	item = []
+	role_id:number;
 
-	ngOnInit(): void {}
-	loginFromGroup = new FormGroup({
-		email: new FormControl('',[Validators.required,Validators.email]),
-		pwd: new FormControl(''),
-		token: new FormControl(this.createToken())
-	});
+  ngOnInit(): void {
+	this.loginFromGroup = new FormGroup({
+		email: new FormControl("", [Validators.required, Validators.email]),
+		pwd: new FormControl(""),
+		
+	  });
+  }
+  
 
-	onLogin(loginFromGroup) {
-		// console.log(typeof(loginFromGroup.value))
-		this.dataService.userLogin(loginFromGroup.value).subscribe(res => {
-			console.log(res);
-			this.localTokenSave(res.token);
-			console.log(window.localStorage.getItem('token'));
-			switch (res.role_id) {
-				case 1:
-					this.isAdmin = true;
-					window.localStorage.setItem('user','1')
-					this.router.navigate(['/createEmployeeComponent'])
-					console.log('Admin login ...');
-					break;
-				case 2:
-					this.isEmployee = true;
-					console.log('Employee is loged in ');
-					this.router.navigate(['/createEmployeeComponent'])
-					break;
-				case 3:
-					this.isUser = true;
-					window.localStorage.setItem('user',"3");
-					console.log('user is loged in ...');
-					break;
+  onLogin(loginFromGroup) {
+	// console.log(typeof(loginFromGroup.value))
+	
+    this.dataService.userLogin(loginFromGroup.value).subscribe(res => {
+	  console.log(res);
+	 
+	  
+	  
+	//   console.log('hi..')
+    //   console.log(window.localStorage.getItem("token"));
+      switch (res['role_id']) {
+        case 1:
+          this.isAdmin = true;
+          window.localStorage.setItem("user", "1");
+          this.localTokenSave(res['token']);
+          this.router.navigate(["/createEmployeeComponent"]);
+          console.log("Admin login ...");
+          break;
+        case 2:
+          this.isEmployee = true;
+          this.localTokenSave(res['token']);
+          console.log("Employee is loged in ");
+          this.router.navigate(["/createEmployeeComponent"]);
+          break;
+        case 3:
+          this.localTokenSave(res['token']);
+          this.isUser = true;
+          window.localStorage.setItem("user", "3");
+          this.router.navigate(["/userProfile"]);
+          console.log("user is loged in ...");
+          break;
 
-				default:
-					this.isWrongUser = true
-					this.message = res.message
-					break;
-			}
-		});
-	}
+        default:
+          this.isWrongUser = true;
+          this.message = res['message'];
+          break;
+      }
+    });
+  }
 
-	// ######## CREATE TOKEN #########//
-	createToken(length: number = 15) {
-		var result = '';
-		var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-		var charactersLength = characters.length;
-		for (var i = 0; i < length; i++) {
-			result += characters.charAt(Math.floor(Math.random() * charactersLength));
-		}
-		return result;
-	}
-	//########### SAVE TOKEN IN SERVER ###############
-	localTokenSave(token: string) {
-		window.localStorage.setItem('token', token);
-	}
+  // ######## CREATE TOKEN #########//
+  createToken(length: number = 15) {
+    var result = "";
+    var characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+  //########### SAVE TOKEN IN SERVER ###############
+  localTokenSave(token: string) {
+    window.localStorage.setItem("token", token);
+  }
 
-
-	//################## REMOVE ERROR ON FOCUS ############### 
-	removeError(){
-		console.log('remove error call ....')
-		this.message = ""
-	}
+  //################## REMOVE ERROR ON FOCUS ###############
+  removeError() {
+    console.log("remove error call ....");
+    this.message = "";
+  }
 }

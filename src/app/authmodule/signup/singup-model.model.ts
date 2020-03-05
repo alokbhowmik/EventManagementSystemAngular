@@ -4,4 +4,5 @@ export class SingupModel {
     email:string;
     mob:number;
     password:string;
+    roleid:string;
 }

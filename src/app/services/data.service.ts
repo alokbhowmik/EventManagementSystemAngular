@@ -32,7 +32,7 @@ export class DataService {
     const httpHeaders = new HttpHeaders({
       'Content-Type':'application/json'
     })
-    // console.log(data)
+    console.log(httpHeaders)
     let Options = {
       headers: httpHeaders
     }
