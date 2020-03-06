@@ -4,6 +4,8 @@ import { CreateEmployeeComponent } from './create-employee/create-employee.compo
 import { LeftSideBarComponent } from './left-side-bar/left-side-bar.component';
 import { ViewEmployeeComponent } from './view-employee/view-employee.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { ViewEventsComponent } from './view-events/view-events.component';
+import { ViewUserComponent } from './view-user/view-user.component';
 
 
 const routes: Routes = [
@@ -11,6 +13,8 @@ const routes: Routes = [
   {path:"Profile", component:UserProfileComponent},
   {path:"addEmployee", component:CreateEmployeeComponent},
   {path:"viewEmployee", component:ViewEmployeeComponent},
+  {path:"viewEvents", component:ViewEventsComponent},
+  {path:"viewUser", component:ViewUserComponent},
 ];
 
 @NgModule({

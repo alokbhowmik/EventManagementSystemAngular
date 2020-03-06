@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 	// console.log(typeof(loginFromGroup.value))
 	
     this.dataService.userLogin(loginFromGroup.value).subscribe(res => {
-	  console.log(res);
+	  // console.log(res);
 	 
 	  
 	  
@@ -47,23 +47,24 @@ export class LoginComponent implements OnInit {
       switch (res['role_id']) {
         case 1:
           this.isAdmin = true;
-          window.localStorage.setItem("user", "1");
+          window.localStorage.setItem("user", res['user']);
           this.localTokenSave(res['token']);
           this.router.navigate(["/createEmployeeComponent"]);
-          console.log("Admin login ...");
+          // console.log("Admin login ...");
           break;
         case 2:
           this.isEmployee = true;
+          window.localStorage.setItem("user", res['user']);
           this.localTokenSave(res['token']);
-          console.log("Employee is loged in ");
+          // console.log("Employee is loged in ");
           this.router.navigate(["/createEmployeeComponent"]);
           break;
         case 3:
-          this.localTokenSave(res['token']);
           this.isUser = true;
-          window.localStorage.setItem("user", "3");
+          window.localStorage.setItem("user", res['user']);
+          this.localTokenSave(res['token']);
           this.router.navigate(["/userProfile"]);
-          console.log("user is loged in ...");
+          // console.log("user is loged in ...");
           break;
 
         default:
@@ -71,6 +72,7 @@ export class LoginComponent implements OnInit {
           this.message = res['message'];
           break;
       }
+      
     });
   }
 
@@ -92,7 +94,9 @@ export class LoginComponent implements OnInit {
 
   //################## REMOVE ERROR ON FOCUS ###############
   removeError() {
-    console.log("remove error call ....");
+    // console.log("remove error call ....");
     this.message = "";
   }
+
+  
 }

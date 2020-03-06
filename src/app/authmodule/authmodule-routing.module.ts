@@ -11,7 +11,7 @@ import { UserProfileComponent } from '../employeemodule/user-profile/user-profil
 const routes: Routes = [
   {path:"", component:WelcomeComponent},
   {path:"user/login",pathMatch:'full', component:LoginComponent},
-  {path:"user/login/signup",pathMatch:'full', component:SignupComponent},
+  {path:"signup",pathMatch:'full', component:SignupComponent},
   {path:"user/login/signup/compleate",pathMatch:'full', redirectTo:'user/login'},
   // {path:"userProfile",pathMatch:'full',component:UserProfileComponent}
 ];

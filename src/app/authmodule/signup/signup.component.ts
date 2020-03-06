@@ -47,9 +47,10 @@ export class SignupComponent implements OnInit {
     this.signup.mob = signupFromGroup.value["mob"];
     this.signup.password = signupFromGroup.value["pwd"];
     this.signup.roleid = signupFromGroup.value['roleid']
+    
     this.dataService.insertUserData(this.signup).subscribe(res => {
       console.log(res);
-      switch (res['id']) {
+      switch (res['id']) {  
         case 0:
           this.message = res['message'];
           this.isValidEmail = true;

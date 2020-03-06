@@ -13,7 +13,9 @@ import { Router } from '@angular/router';
 export class CreateEmployeeComponent implements OnInit {
 
   signup = new SingupModel();
-
+  message=""
+  isValidEmail:boolean= false
+  
   constructor(private dataService: DataService,private router: Router) {}
 
   ngOnInit(): void {
@@ -44,7 +46,17 @@ export class CreateEmployeeComponent implements OnInit {
     this.signup.roleid = signupFromGroup.value["roleid"]
     this.dataService.insertUserData(this.signup).subscribe(res => {
       console.log(res);
-      this.router.navigate(['/createEmployeeComponent'])
+      switch (res['id']) {  
+        case 0:
+          this.message = res['message'];
+          this.isValidEmail = true;
+          break;
+      
+        default:
+          this.router.navigate(['/createEmployeeComponent'])
+          // this.router.navigate(['/user/login'])
+          break;
+      }
     });
   }
 

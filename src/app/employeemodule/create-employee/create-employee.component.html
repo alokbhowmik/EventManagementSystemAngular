@@ -45,6 +45,9 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
         <input formControlName="email" name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+        <div *ngIf= "true" class="text-danger">
+          {{ message }}
+        </div>
       </div>
   
       <div class="text-danger" *ngIf="signupFromGroup.get('email').invalid && signupFromGroup.get('email').touched">
@@ -53,6 +56,10 @@
              invalid Email 
           </span>
         </div> 
+        
+          
+          
+        
         <div *ngIf = "signupFromGroup.get('email').errors.email">
           <span>
             It is not an email  

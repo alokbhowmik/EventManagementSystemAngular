@@ -7,12 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'eventManagementAngular';
-  userValue: string = ""
+  userName: string = ""
 
   constructor(){
-    console.log('constructor calling ...')
-    this.userValue = window.localStorage.getItem('user')
-    console.log(this.userValue)
+    // console.log('constructor calling ...')
+    this.userName = window.localStorage.getItem('user')
+    // if(this.userName.length )
   }
   
 }

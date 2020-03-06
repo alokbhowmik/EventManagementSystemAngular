@@ -1,0 +1,26 @@
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Vanue</th>
+      <th scope="col">Avalabel Sit</th>
+      <th scope="col">Event date</th>
+      <th scope="col" >Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr  *ngFor="let event of events;index as i">
+      <th scope="row">{{i+1}}</th>
+      <td>{{event['eventName']}}</td>
+      <td>{{event['eventVenue']}}</td>
+      <td>{{event['avalable_sit']}}</td>
+      <td>{{event['event_date']}}</td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteEvent(event['eventId'],i)">delete</button>
+      </td>
+      
+    </tr>
+  </tbody>
+</table>
+
