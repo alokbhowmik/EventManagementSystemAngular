@@ -70,6 +70,18 @@ export class DataService {
   deleteEvent(id){
     return this.httpClient.get(this.url+'/api/delete_events/' +id)
   }
+  //$$$$$$$$$$$$$$$$$$$$ ADD EVENTS $$$$$$$$$$$$$$$$$$
+
+  addEvents(data){
+    const httpHeaders = new HttpHeaders({
+      'Content-Type':'application/json'
+    })
+    
+    let Options = {
+      headers: httpHeaders
+    }
+    return this.httpClient.post(this.url+"/api/addevent",data,Options)
+  }
 
   //$$$$$$$$$$$$$$$$$$$$ VIEW USER $$$$$$$$$$$$$$$$$$$$$$$
   

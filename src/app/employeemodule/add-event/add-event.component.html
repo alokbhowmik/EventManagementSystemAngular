@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="d-flex justify-content-around">
+
+    <h2>Add Event </h2>
+  </div>
+  <form [formGroup]="eventFromGroup" (ngSubmit)="onEventSubmit()">
+    <div class="form-group">
+      <label for="eventName">Event Name</label>
+      <input formControlName="eventName"
+      type="text" class="form-control" id="eventName" aria-describedby="emailHelp" placeholder="Event name " name="eventName" >
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Venue</label>
+      <input formControlName="eventVenue" name="eventVenue"
+      type="text" class="form-control" id="venue" aria-describedby="emailHelp" placeholder="Event Venue ">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">total sits</label>
+      <input formControlName="totalSit" name="total_sit"
+       type="number" class="form-control" id="total_sit" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Banner</label>
+      <input formControlName="eventBanner" name="eventBanner"
+      type="file" class="form-control" id="banner" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">event date</label>
+      <input formControlName="eventDate" name="eventDate"
+      type="date" class="form-control" id="event_date" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    <div class="from-group">
+      <label for="event_time"> Time</label>
+      <input formControlName="eventTime" name="eventTime"
+      type="time" class="form-control" id="event_date" aria-describedby="emailHelp" placeholder="Enter email">
+
+    </div>
+    <div class="d-flex justify-content-around">
+
+    <button class="btn btn-primary">submit</button>
+    </div>
+  </form>
+</div>

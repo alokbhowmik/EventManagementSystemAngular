@@ -9,10 +9,11 @@ import { ViewEmployeeComponent } from './view-employee/view-employee.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { ViewEventsComponent } from './view-events/view-events.component';
 import { ViewUserComponent } from './view-user/view-user.component';
+import { AddEventComponent } from './add-event/add-event.component';
 
 
 @NgModule({
-  declarations: [CreateEmployeeComponent, LeftSideBarComponent, ViewEmployeeComponent, UserProfileComponent, ViewEventsComponent, ViewUserComponent],
+  declarations: [CreateEmployeeComponent, LeftSideBarComponent, ViewEmployeeComponent, UserProfileComponent, ViewEventsComponent, ViewUserComponent, AddEventComponent],
   imports: [
     CommonModule,
     EmployeemoduleRoutingModule,

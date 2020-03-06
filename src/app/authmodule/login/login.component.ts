@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
           this.localTokenSave(res['token']);
           this.router.navigate(["/createEmployeeComponent"]);
           // console.log("Admin login ...");
+          window.localStorage.setItem("loginUser",'1')
           break;
         case 2:
           this.isEmployee = true;
